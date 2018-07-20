@@ -6,11 +6,11 @@
 #define lim 100
 
 using namespace std;
-ll lt[mx],an[mx];
+ll lt[mx],drier[mx];
 
 int main() {
-	//freopen("laundro_matt.txt","r",stdin);
-	//freopen("inter.txt","w",stdout);
+	freopen("laundro_matt.txt","r",stdin);
+	freopen("inter.txt","w",stdout);
 
 	ios_base ::sync_with_stdio(false);
 
@@ -30,28 +30,26 @@ int main() {
 
 		for(int i=1;i<=l;i++)
 		{
-			an[i]=0;
+			drier[i]=0;
 			pair<ll,ll>lest=pq.top();pq.pop();
 			lt[i]=-lest.first;
 			pq.push({lest.first+lest.second,lest.second});
 
 		}
-          ll ans=0;
+             ll ans=0;
+
 	     int j=0;
-		for(int i=1;i<l;i++)
+		for(int i=1;i<=l;i++)
 		{
 			j%=m;
 
-               if(an[j]>lt[i])
-               	an[j]=an[j]+d;
-               else
-               	an[j]=lt[i]+d;
+                        if(drier[j+1]>lt[i])
+               	           drier[j+1]=drier[j+1]+d;
+                        else
+               	           drier[j+1]=lt[i]+d;
+			ans=max(drier[j+1],ans);
 			j++;
-
-			ans=max(an[j],ans);
 		}
-
-          ans=max(ans+d,lt[l]+d);
 
 		cout<<"Case #"<<cs<<": "<<ans<<"\n";
 	}
